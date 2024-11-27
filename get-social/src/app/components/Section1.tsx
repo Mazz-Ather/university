@@ -39,7 +39,7 @@ const staggerContainer = {
           >
             <motion.h1 
               variants={fadeIn}
-              className="block text-3xl font-bold text-gray-800 sm:text-4xl lg:text-6xl lg:leading-tight dark:text-white"
+              className="block text-3xl font-bold text-gray-800 sm:text-4xl lg:text-6xl lg:leading-tight "
             >
               Start your journey with <span className="text-blue-600">Digital Aliens Agency</span>
             </motion.h1>
@@ -96,7 +96,7 @@ const staggerContainer = {
   initial={{ scale: 0.8 }}
   animate={{ scale: 1 }}
   transition={{ duration: 0.5 }}
-  src="/hero1.mp4"
+  src="/thomas.mp4"
   autoPlay
   loop
   muted

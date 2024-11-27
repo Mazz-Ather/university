@@ -1,99 +1,268 @@
-import { cn } from "@/lib/utils";
-import Marquee from "@/components/ui/marquee";
+// components/Marquee.jsx
+'use client';
+import { useEffect, useState } from 'react';
+import Image from 'next/image';
 
-const reviews = [
-  {
-    name: "Jack",
-    username: "@jack",
-    body: "I've never seen anything like this before. It's amazing. I love it.",
-    img: "https://avatar.vercel.sh/jack",
-  },
-  {
-    name: "Jill",
-    username: "@jill",
-    body: "I don't know what to say. I'm speechless. This is amazing.",
-    img: "https://avatar.vercel.sh/jill",
-  },
-  {
-    name: "John",
-    username: "@john",
-    body: "I'm at a loss for words. This is amazing. I love it.",
-    img: "https://avatar.vercel.sh/john",
-  },
-  {
-    name: "Jane",
-    username: "@jane",
-    body: "I'm at a loss for words. This is amazing. I love it.",
-    img: "https://avatar.vercel.sh/jane",
-  },
-  {
-    name: "Jenny",
-    username: "@jenny",
-    body: "I'm at a loss for words. This is amazing. I love it.",
-    img: "https://avatar.vercel.sh/jenny",
-  },
-  {
-    name: "James",
-    username: "@james",
-    body: "I'm at a loss for words. This is amazing. I love it.",
-    img: "https://avatar.vercel.sh/james",
-  },
+const testimonials = [
+    {
+        id: 1,
+        name: "John Smith",
+        role: "CEO, Tech Solutions",
+        image: "/brand1.jpg",
+        rating: 5,
+        text: "Outstanding service! Their team delivered beyond our expectations. Highly recommended for any business looking to scale."
+    },
+    {
+        id: 2,
+        name: "Sarah Johnson",
+        role: "Marketing Director",
+        image: "/testimonials/person2.jpg",
+        rating: 5,
+        text: "The attention to detail and creativity they brought to our project was exceptional. A game-changer for our business."
+    },
+    {
+        id: 3,
+        name: "Michael Chen",
+        role: "Startup Founder",
+        image: "/testimonials/person3.jpg",
+        rating: 4,
+        text: "Professional, responsive, and innovative. They transformed our vision into reality."
+    },
+    {
+        id: 4,
+        name: "Emma Williams",
+        role: "Product Manager",
+        image: "/testimonials/person4.jpg",
+        rating: 5,
+        text: "Best agency we've worked with! Their strategic approach and execution are unmatched."
+    },
+    {
+        id: 5,
+        name: "David Brown",
+        role: "CTO, Innovation Labs",
+        image: "/testimonials/person5.jpg",
+        rating: 4,
+        text: "Exceptional work ethics and delivered outstanding results. Would definitely work with them again."
+    },
+    {
+        id: 6,
+        name: "Lisa Anderson",
+        role: "E-commerce Director",
+        image: "/testimonials/person6.jpg",
+        rating: 5,
+        text: "They helped us achieve record-breaking growth. Their expertise is truly remarkable."
+    },
+    {
+        id: 7,
+        name: "Robert Martinez",
+        role: "Digital Strategist",
+        image: "/testimonials/person7.jpg",
+        rating: 5,
+        text: "Innovative solutions and excellent communication throughout the project."
+    },
+    {
+        id: 8,
+        name: "Jennifer Lee",
+        role: "Brand Manager",
+        image: "/testimonials/person8.jpg",
+        rating: 4,
+        text: "Their creative approach and technical expertise made our project a huge success."
+    },
+    {
+        id: 9,
+        name: "Tom Wilson",
+        role: "Operations Head",
+        image: "/testimonials/person9.jpg",
+        rating: 5,
+        text: "Exceptional service quality and professional team. Highly recommended!"
+    },
+    {
+        id: 10,
+        name: "Rachel Green",
+        role: "Creative Director",
+        image: "/testimonials/person10.jpg",
+        rating: 5,
+        text: "They exceeded our expectations in every way. A truly outstanding agency."
+    }
 ];
 
-const firstRow = reviews.slice(0, reviews.length / 2);
-const secondRow = reviews.slice(reviews.length / 2);
+const Marquee = () => {
+    const [isHovered, setIsHovered] = useState(false);
 
-const ReviewCard = ({
-  img,
-  name,
-  username,
-  body,
-}: {
-  img: string;
-  name: string;
-  username: string;
-  body: string;
-}) => {
-  return (
-    <figure
-      className={cn(
-        "relative w-64 cursor-pointer overflow-hidden rounded-xl border p-4",
-        // light styles
-        "border-gray-950/[.1] bg-gray-950/[.01] hover:bg-gray-950/[.05]",
-        // dark styles
-        "dark:border-gray-50/[.1] dark:bg-gray-50/[.10] dark:hover:bg-gray-50/[.15]",
-      )}
-    >
-      <div className="flex flex-row items-center gap-2">
-        <img className="rounded-full" width="32" height="32" alt="" src={img} />
-        <div className="flex flex-col">
-          <figcaption className="text-sm font-medium dark:text-white">
-            {name}
-          </figcaption>
-          <p className="text-xs font-medium dark:text-white/40">{username}</p>
+    return (
+        <div className="marquee-container !bg-black/30">
+            <div className={`marquee-wrapper ${isHovered ? 'paused' : ''}`}
+                onMouseEnter={() => setIsHovered(true)}
+                onMouseLeave={() => setIsHovered(false)}>
+                <div className="marquee-content">
+                    {testimonials.map((testimonial) => (
+                        <div key={testimonial.id} className="testimonial-card">
+                            <div className="image-container">
+                                <Image
+                                    src={testimonial.image}
+                                    alt={testimonial.name}
+                                    width={80}
+                                    height={80}
+                                    className="profile-image"
+                                />
+                            </div>
+                            <div className="rating">
+                                {[...Array(5)].map((_, index) => (
+                                    <span key={index} className={`star ${index < testimonial.rating ? 'filled' : ''}`}>
+                                        ★
+                                    </span>
+                                ))}
+                            </div>
+                            <p className="testimonial-text">{testimonial.text}</p>
+                            <h3 className="name">{testimonial.name}</h3>
+                            <p className="role">{testimonial.role}</p>
+                        </div>
+                    ))}
+                </div>
+                <div className="marquee-content" aria-hidden="true">
+                    {testimonials.map((testimonial) => (
+                        <div key={`duplicate-${testimonial.id}`} className="testimonial-card">
+                            <div className="image-container">
+                                <Image
+                                    src={testimonial.image}
+                                    alt={testimonial.name}
+                                    width={80}
+                                    height={80}
+                                    className="profile-image"
+                                />
+                            </div>
+                            <div className="rating">
+                                {[...Array(5)].map((_, index) => (
+                                    <span key={index} className={`star ${index < testimonial.rating ? 'filled' : ''}`}>
+                                        ★
+                                    </span>
+                                ))}
+                            </div>
+                            <p className="testimonial-text">{testimonial.text}</p>
+                            <h3 className="name">{testimonial.name}</h3>
+                            <p className="role">{testimonial.role}</p>
+                        </div>
+                    ))}
+                </div>
+            </div>
+            {/* <style jsx>{`
+                .marquee-container {
+                    width: 100%;
+                    overflow: hidden;
+                    background: #f8f9fa;
+                    padding: 2rem 0;
+                }
+
+                .marquee-wrapper {
+                    display: flex;
+                    width: fit-content;
+                    animation: scroll 60s linear infinite;
+                }
+
+                .marquee-wrapper.paused {
+                    animation-play-state: paused;
+                }
+
+                .marquee-content {
+                    display: flex;
+                    gap: 2rem;
+                    padding: 1rem;
+                }
+
+                .testimonial-card {
+                    background: white;
+                    border-radius: 10px;
+                    padding: 1.5rem;
+                    width: 300px;
+                    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+                    transition: transform 0.3s ease, box-shadow 0.3s ease;
+                }
+
+                .testimonial-card:hover {
+                    transform: translateY(-5px);
+                    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
+                }
+
+                .image-container {
+                    display: flex;
+                    justify-content: center;
+                    margin-bottom: 1rem;
+                }
+
+                .profile-image {
+                    border-radius: 50%;
+                    object-fit: cover;
+                }
+
+                .rating {
+                    display: flex;
+                    justify-content: center;
+                    margin-bottom: 1rem;
+                }
+
+                .star {
+                    color: #ddd;
+                    font-size: 1.2rem;
+                    margin: 0 2px;
+                }
+
+                .star.filled {
+                    color: #ffd700;
+                }
+
+                .testimonial-text {
+                    font-size: 0.9rem;
+                    line-height: 1.6;
+                    color: #666;
+                    margin-bottom:
+                    text-align: center;
+                }
+
+                .name {
+                    font-size: 1.1rem;
+                    font-weight: 600;
+                    margin: 0;
+                    text-align: center;
+                    color: #333;
+                }
+
+                .role {
+                    font-size: 0.9rem;
+                    color: #666;
+                    margin: 0.25rem 0 0;
+                    text-align: center;
+                }
+
+                @keyframes scroll {
+                    0% {
+                        transform: translateX(0);
+                    }
+                    100% {
+                        transform: translateX(-50%);
+                    }
+                }
+
+                @media (max-width: 768px) {
+                    .testimonial-card {
+                        width: 250px;
+                        padding: 1rem;
+                    }
+
+                    .testimonial-text {
+                        font-size: 0.8rem;
+                    }
+
+                    .name {
+                        font-size: 1rem;
+                    }
+
+                    .role {
+                        font-size: 0.8rem;
+                    }
+                }
+            `}</style> */}
         </div>
-      </div>
-      <blockquote className="text-sm">{body}</blockquote>
-    </figure>
-  );
+    );
 };
 
-export default function MarqueeDemo() {
-  return (
-    <div className="relative flex h-[500px] w-full flex-col items-center justify-center overflow-hidden rounded-lg border bg-background md:shadow-xl ">
-     <h1 className="font-extrabold text-4xl opacity-90">WHAT CLIENT SAYS ABOUT US ?</h1>
-      <Marquee pauseOnHover className="[--duration:20s]">
-        {firstRow.map((review) => (
-          <ReviewCard key={review.username} {...review} />
-        ))}
-      </Marquee>
-      <Marquee reverse pauseOnHover className="[--duration:20s]">
-        {secondRow.map((review) => (
-          <ReviewCard key={review.username} {...review} />
-        ))}
-      </Marquee>
-      <div className="pointer-events-none absolute inset-y-0 left-0 w-1/3 bg-gradient-to-r from-white/70 dark:from-background"></div>
-      <div className="pointer-events-none absolute inset-y-0 right-0 w-1/3 bg-gradient-to-l from-white dark:from-background"></div>
-    </div>
-  );
-}
+export default Marquee;

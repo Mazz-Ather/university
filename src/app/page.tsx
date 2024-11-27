@@ -1,14 +1,11 @@
-import Image from "next/image";
-import { Navbar } from "./components/Navbar";
-import Footer from "./components/Footer";
-import Hero from "./components/Hero";
-import ApiAxios from "./components/ApiAxios";
+import Section1 from "@/app/components/Section1";
+import Section2 from "@/app/components/Section2";
+
 export default function Home() {
   return (
   <>
-  <Navbar/>
-  <ApiAxios/>
-  {/* <Footer/> */}
+<Section1/>
+<Section2/>
   </>
   )
   ;

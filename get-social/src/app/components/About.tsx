@@ -2,9 +2,10 @@
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/all";
-import FancyTitle from "./FancyTitle";
+// import FancyTitle from "./FancyTitle";
 import { useRef } from "react";
-
+// npm i gsap
+//  npm i @gsap/react
 gsap.registerPlugin(ScrollTrigger);
 
 const About = () => {
@@ -50,15 +51,12 @@ const About = () => {
         <p className="font-general text-sm uppercase md:text-[17px] mt-11">
           Welcome to Get social digital marketing agency
         </p>
-
-        <FancyTitle
-  title="<b>explore-about-our-agency</b>"
-  containerClass="mt-5 text-center capitalize"
-/>
+<h1 className="font-bold text-5xl">explore</h1>
+        
 
         <div className="about-subtext">
           <p>Transform Your Brand with Expert Digital Marketing</p>
-          <p className="text-gray-500">
+            <p className="text-gray-500">
             Our agency specializes in creating customized digital marketing strategies that enhance your online visibility and drive real results.
           </p>
         </div>

@@ -2,7 +2,8 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import Hero from '@/app/components/Hero'; // Adjust path as needed
+// import Hero from '@/app/components/Hero'; // Adjust path as needed
+import ComputersCanvas from './canvas/ComputerCanvas';
 
 const AnimatedSection = ({ title, description, index }: { 
   title: string; 
@@ -71,12 +72,15 @@ export default function ScrollingSections() {
       
       {/* Right Hero section */}
       <div className="w-full lg:w-1/2 lg:sticky lg:top-0 h-screen flex items-center justify-center bg-black/80 overflow-hidden">
-        <Hero />
-      </div>
+      <section className={`hero relative w-full h-[70vh] mx-auto -mt-32 pr-11`}>
+      
+      <ComputersCanvas />
+ </section>
+ </div>
       
       {/* Mobile Hero section */}
       <div className="w-full lg:hidden mt-9">
-        <Hero />
+      <ComputersCanvas />
       </div>
     </div>
   );
